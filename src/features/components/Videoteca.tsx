@@ -6,20 +6,29 @@ import { DettaglioFilm } from "./DettaglioFilm";
 import { detailFilm } from "./elencoSlice";
 import { useSelector } from "react-redux";
 import { Film } from "./Form";
+import { selectFilm } from "./elencoSlice";
+import { Ricerca } from "./Ricerca";
+
 
 export interface Iprops {
   movie: Film;
 }
 
+export interface IArrayProps {
+  movies: Array<Film>;
+}
+
 function Videoteca() {
+  const films = useSelector(selectFilm);
   const film = useSelector(detailFilm);
 
   return (
     <>
       <Header />
       <Form />
-      <Elenco />
+      <Elenco movies={films}/>
       <DettaglioFilm movie={film} />
+      <Ricerca />
     </>
   );
 }

@@ -5,21 +5,22 @@ import { Flex, Button, Text } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { Film } from "./Form";
 // import { TooltipFilm } from "./TooltipFilm";
+import { IArrayProps } from "./Videoteca";
 
-export const Elenco = () => {
+export const Elenco = (props: IArrayProps) => {
   const dispatch = useDispatch();
   const films = useSelector(selectFilm);
 
-  const handleClick = (film: Film) => {
-    dispatch(scegliFilm(film));
-  };
+  // const handleClick = (film: Film) => {
+  //   dispatch(scegliFilm(film));
+  // };
 
   return (
     <Flex direction="column">
       {films.map((film: Film, index: number) => {
         return (
           <Flex key={index}>
-            <Text m="2">{film.titleInput}</Text>
+            <Text m="1">{film.titleInput}</Text>
 
             {/* <Text>{film.subTitleInput}</Text>
             <Spacer />

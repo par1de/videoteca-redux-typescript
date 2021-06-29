@@ -1,9 +1,11 @@
 import { Film } from './Form';
 import { RootState } from './../../app/store';
 import { createSlice } from "@reduxjs/toolkit";
+import { store } from "../../app/store";
 
 export interface VideotecaState {
   elencoFilm: Array<Film>;
+  wantedFilms: Array<Film>;
   filmSelezionato: Film;
   isSelected: boolean;
   status: 'idle' | 'loading' | 'failed';
@@ -11,6 +13,7 @@ export interface VideotecaState {
 
 const initialState: VideotecaState = {
   elencoFilm: [],
+  wantedFilms: [],
   filmSelezionato: {
     id: 0,
     titleInput: "",
@@ -42,15 +45,22 @@ export const elencoSlice = createSlice({
       state.filmSelezionato = action.payload;
       state.isSelected = true;
     },
+    ricerca: (state, action) => {
+      state.elencoFilm.map((film: Film, index: number) => {
+        if(film.titleInput === action.payload) state.wantedFilms.push(action.payload);
+      })
+    }
   },
 });
 
-export const { addFilm, removeFilm, scegliFilm } = elencoSlice.actions;
+export const { addFilm, removeFilm, scegliFilm, ricerca } = elencoSlice.actions;
 
 export const selectFilm = (state: RootState) => state.film.elencoFilm;
 
 export const detailFilm = (state: RootState) => state.film.filmSelezionato;
 
 export const isSelected = (state: RootState) => state.film.isSelected;
+
+export const wantedFilms = (state: RootState) => state.film.wantedFilms;
 
 export default elencoSlice.reducer;
