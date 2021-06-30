@@ -2,20 +2,23 @@ import React from "react";
 import { Input, Flex, Button } from "@chakra-ui/react";
 import { Elenco } from "./Elenco";
 import { useSelector, useDispatch } from "react-redux";
-import { wantedFilms, ricerca } from "./elencoSlice";
+import { wantedFilms, ricerca, selectFilm } from "./elencoSlice";
 import { useState } from "react";
 
-export const Ricerca = () => {
+function Ricerca() {
   const dispatch = useDispatch();
   const films = useSelector(wantedFilms);
+  const film = useSelector(selectFilm);
   const [titleToResearch, setTitleToResearch] = useState("");
 
   const handleChange = (e: any) => {
     setTitleToResearch(e.target.value);
+    console.log(e.target.value);
   };
 
   const handleClick = () => {
     dispatch(ricerca(titleToResearch));
+    console.log(titleToResearch);
   };
 
   return (
@@ -32,6 +35,10 @@ export const Ricerca = () => {
         </Button>
       </Flex>
       <Elenco movies={films} />
+      {console.log(film)}
+      {console.log(films)}
     </>
   );
-};
+}
+
+export default Ricerca;

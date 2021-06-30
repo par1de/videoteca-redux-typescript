@@ -4,7 +4,10 @@ import { Flex, Button, Text } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { Film } from "./Form";
 // import { TooltipFilm } from "./TooltipFilm";
-import { IArrayProps } from "./Videoteca";
+
+export interface IArrayProps {
+  movies: Array<Film>;
+}
 
 export const Elenco = (props: IArrayProps) => {
   const dispatch = useDispatch();

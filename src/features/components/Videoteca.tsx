@@ -3,19 +3,14 @@ import { Form } from "./Form";
 import { Elenco } from "./Elenco";
 import { Header } from "./Header";
 import { DettaglioFilm } from "./DettaglioFilm";
-import { detailFilm } from "./elencoSlice";
+import { detailFilm, selectFilm } from "./elencoSlice";
 import { useSelector } from "react-redux";
 import { Film } from "./Form";
-import { selectFilm } from "./elencoSlice";
-import { Ricerca } from "./Ricerca";
-
+import Ricerca from "./Ricerca";
+import Test from "./Test";
 
 export interface Iprops {
   movie: Film;
-}
-
-export interface IArrayProps {
-  movies: Array<Film>;
 }
 
 function Videoteca() {
@@ -26,9 +21,10 @@ function Videoteca() {
     <>
       <Header />
       <Form />
-      <Elenco movies={films}/>
+      <Elenco movies={films} />
       <DettaglioFilm movie={film} />
       <Ricerca />
+      <Test />
     </>
   );
 }

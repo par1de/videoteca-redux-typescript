@@ -46,6 +46,7 @@ export const elencoSlice = createSlice({
     ricerca: (state, action) => {
         state.wantedFilms = state.elencoFilm.filter( x => x.titleInput.includes(action.payload));
         state.isSelected = false;
+        console.log(state.wantedFilms);
     }
   },
 });
