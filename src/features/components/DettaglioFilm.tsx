@@ -28,19 +28,16 @@ export const DettaglioFilm = (props: Iprops) => {
         <Text ml="2" color="teal">
           Anno di pubblicazione:{" "}
         </Text>{" "}
-        {props.movie.annoUscita}
+        {props.movie.annoUscita}{" "}
       </Flex>
     </Flex>
   );
 
   const noFilmSelected = (
     <Flex>
-      <Text color="teal">
-        Non ci sono film selezionati
-      </Text>
+      <Text color="teal">Non ci sono film selezionati</Text>
     </Flex>
   );
 
-  return (selected ? filmDetail : noFilmSelected);
+  return selected ? filmDetail : noFilmSelected;
 };
-

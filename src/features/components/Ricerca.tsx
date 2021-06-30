@@ -4,6 +4,7 @@ import { Elenco } from "./Elenco";
 import { useSelector, useDispatch } from "react-redux";
 import { wantedFilms, ricerca, selectFilm } from "./elencoSlice";
 import { useState } from "react";
+import { Header } from "./Header";
 
 function Ricerca() {
   const dispatch = useDispatch();
@@ -23,14 +24,15 @@ function Ricerca() {
 
   return (
     <>
-      <Flex mt="20">
+      <Header titolo="Ricerca" />
+      <Flex mt="2">
         <Input
           m="2"
           placeholder="Inserire il titolo da ricercare"
           name="titoloRicercato"
           onChange={handleChange}
         ></Input>
-        <Button m="2" onClick={handleClick}>
+        <Button m="2" onClick={handleClick} colorScheme="teal">
           Search
         </Button>
       </Flex>

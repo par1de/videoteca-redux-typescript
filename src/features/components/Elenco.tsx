@@ -26,13 +26,21 @@ export const Elenco = (props: IArrayProps) => {
             {/* <Text>{film.subTitleInput}</Text>
             <Spacer />
             <Text>{film.annoUscita}</Text> */}
-            <Button m="2" onClick={() => dispatch(removeFilm(film.titleInput))}>
+            <Button
+              m="2"
+              colorScheme="red"
+              onClick={() => dispatch(removeFilm(film.titleInput))}
+            >
               elimina
             </Button>
 
             {/* <TooltipFilm film={film} /> */}
 
-            <Button m="2" onClick={() => dispatch(scegliFilm(film))}>
+            <Button
+              m="2"
+              colorScheme="green"
+              onClick={() => dispatch(scegliFilm(film))}
+            >
               {/* <Button m="2" onClick={() => handleClick(film)}> */}
               Dettaglio film
             </Button>

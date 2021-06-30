@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 // import { store } from "../../app/store";
 
 export interface Film {
-    id: number;
-    titleInput: string;
-    subTitleInput: string;
-    annoUscita: string;
+  id: number;
+  titleInput: string;
+  subTitleInput: string;
+  annoUscita: string;
 }
 
 export function Form() {
@@ -39,7 +39,6 @@ export function Form() {
     setId(id + 1);
     dispatch(addFilm(item));
     // console.log(store.getState());  // per vedere il contenuto dello state di redux
-    
   };
 
   return (
@@ -77,6 +76,7 @@ export function Form() {
         w="200px"
         value={item.annoUscita}
         name="annoUscita"
+        type="date"
         onChange={handleChange}
       />
       <Button m="2" colorScheme="teal" size="md" onClick={handleClick}>

@@ -6,8 +6,6 @@ import { DettaglioFilm } from "./DettaglioFilm";
 import { detailFilm, selectFilm } from "./elencoSlice";
 import { useSelector } from "react-redux";
 import { Film } from "./Form";
-import Ricerca from "./Ricerca";
-import Test from "./Test";
 
 export interface Iprops {
   movie: Film;
@@ -19,12 +17,10 @@ function Videoteca() {
 
   return (
     <>
-      <Header />
+      <Header titolo="videoteca" />
       <Form />
       <Elenco movies={films} />
       <DettaglioFilm movie={film} />
-      <Ricerca />
-      <Test />
     </>
   );
 }

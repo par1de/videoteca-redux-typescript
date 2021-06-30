@@ -1,6 +1,5 @@
 import Ricerca from "./Ricerca";
 import Videoteca from "./Videoteca";
-import Test from "./Test";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
 
@@ -15,9 +14,6 @@ function Layout() {
           </Route>
           <Route exact path="/ricerca" component={Ricerca}>
             <Ricerca />
-          </Route>
-          <Route exact path="/test" component={Test}>
-            <Test />
           </Route>
         </Switch>
       </Router>
