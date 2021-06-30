@@ -1,8 +1,6 @@
 import { Film } from './Form';
 import { RootState } from './../../app/store';
 import { createSlice } from "@reduxjs/toolkit";
-import { store } from "../../app/store";
-
 export interface VideotecaState {
   elencoFilm: Array<Film>;
   wantedFilms: Array<Film>;
@@ -46,9 +44,8 @@ export const elencoSlice = createSlice({
       state.isSelected = true;
     },
     ricerca: (state, action) => {
-      state.elencoFilm.map((film: Film, index: number) => {
-        if(film.titleInput === action.payload) state.wantedFilms.push(action.payload);
-      })
+        state.wantedFilms = state.elencoFilm.filter( x => x.titleInput.includes(action.payload));
+        state.isSelected = false;
     }
   },
 });
