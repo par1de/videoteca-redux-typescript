@@ -1,6 +1,8 @@
 import { Film } from './Videoteca';
 import { RootState } from './../../app/store';
 import { createSlice } from "@reduxjs/toolkit";
+import { bastardi, django, hateful, iene, killBill1, killBill2, pulpFiction } from './elencoFilmMockup';
+
 export interface VideotecaState {
   elencoFilm: Array<Film>;
   wantedFilms: Array<Film>;
@@ -9,8 +11,10 @@ export interface VideotecaState {
   status: 'idle' | 'loading' | 'failed';
 }
 
+
+
 const initialState: VideotecaState = {
-  elencoFilm: [],
+  elencoFilm: [iene, pulpFiction, killBill1, killBill2, bastardi, django, hateful],
   wantedFilms: [],
   filmSelezionato: {
     id: 0,
@@ -38,10 +42,13 @@ export const elencoSlice = createSlice({
       state.elencoFilm = state.elencoFilm.filter(
         (x) => x.titleInput !== action.payload
       );
+      console.log("sono in remove");
+      
     },
     scegliFilm: (state, action) => {
       state.filmSelezionato = action.payload;
       state.isSelected = true;
+      console.log("sono in scegli film");
     },
     ricerca: (state, action) => {
         state.wantedFilms = state.elencoFilm.filter( x => x.titleInput.includes(action.payload));
