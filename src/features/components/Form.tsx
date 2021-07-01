@@ -3,13 +3,7 @@ import { Button, Input, Flex } from "@chakra-ui/react";
 import { addFilm } from "./elencoSlice";
 import { useDispatch } from "react-redux";
 // import { store } from "../../app/store";
-
-export interface Film {
-  id: number;
-  titleInput: string;
-  subTitleInput: string;
-  annoUscita: string;
-}
+import { Film } from "./Videoteca";
 
 export function Form() {
   const dispatch = useDispatch();

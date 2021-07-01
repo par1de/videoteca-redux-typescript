@@ -1,4 +1,4 @@
-import { Film } from './Form';
+import { Film } from './Videoteca';
 import { RootState } from './../../app/store';
 import { createSlice } from "@reduxjs/toolkit";
 export interface VideotecaState {

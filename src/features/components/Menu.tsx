@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { Flex, HStack, Tag } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";

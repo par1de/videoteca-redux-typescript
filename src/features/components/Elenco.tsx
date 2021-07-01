@@ -1,52 +1,58 @@
 import React from "react";
-import { removeFilm, scegliFilm } from "./elencoSlice";
-import { Flex, Button, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Spacer,
+  Table,
+  TableCaption,
+  Tbody,
+  Td,
+  Text,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { Film } from "./Form";
-// import { TooltipFilm } from "./TooltipFilm";
-
-export interface IArrayProps {
-  movies: Array<Film>;
-}
+import { removeFilm, scegliFilm } from "./elencoSlice";
+import { IArrayProps } from "./Videoteca";
+import { Film } from "./Videoteca";
 
 export const Elenco = (props: IArrayProps) => {
   const dispatch = useDispatch();
 
-  // const handleClick = (film: Film) => {
-  //   dispatch(scegliFilm(film));
-  // };
-
   return (
     <Flex direction="column">
-      {props.movies.map((film: Film, index: number) => {
-        return (
-          <Flex key={index}>
-            <Text m="1">{film.titleInput}</Text>
-
-            {/* <Text>{film.subTitleInput}</Text>
-            <Spacer />
-            <Text>{film.annoUscita}</Text> */}
-            <Button
-              m="2"
-              colorScheme="red"
-              onClick={() => dispatch(removeFilm(film.titleInput))}
-            >
-              elimina
-            </Button>
-
-            {/* <TooltipFilm film={film} /> */}
-
-            <Button
-              m="2"
-              colorScheme="green"
-              onClick={() => dispatch(scegliFilm(film))}
-            >
-              {/* <Button m="2" onClick={() => handleClick(film)}> */}
-              Dettaglio film
-            </Button>
-          </Flex>
-        );
-      })}
+      <Table variant="striped" colorScheme="teal">
+        <TableCaption>Film presenti a Database</TableCaption>
+        <Thead>
+          <Tr>
+            <Th>Id</Th>
+            <Th>Titolo</Th>
+            <Th>Sottotitolo</Th>
+            <Th>Anno Uscita</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {props.movies.map((film: Film, index: number) => {
+            return (
+              <Tr key={index}>
+                <Td>{film.id}</Td>
+                <Td>{film.titleInput}</Td>
+                <Td>{film.subTitleInput}</Td>
+                <Td>{film.annoUscita.substr(0, 4)}</Td>
+              </Tr>
+            );
+          })}
+        </Tbody>
+        <Tfoot>
+          <Tr>
+            <Th>Titolo</Th>
+            <Th>Sottotitolo</Th>
+            <Th>Anno Uscita</Th>
+          </Tr>
+        </Tfoot>
+      </Table>
     </Flex>
   );
 };
