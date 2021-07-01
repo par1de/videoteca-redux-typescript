@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Flex,
@@ -10,9 +10,20 @@ import {
   Th,
   Thead,
   Tr,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  FormControl,
+  FormLabel,
+  Input,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { removeFilm, removeFilmFromWanted, scegliFilm } from "./elencoSlice";
+import { removeFilm, removeFilmFromWanted } from "./elencoSlice";
 import { IArrayProps } from "./Videoteca";
 import { Film } from "./Videoteca";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
@@ -20,7 +31,30 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 export const Elenco = (props: IArrayProps) => {
   const dispatch = useDispatch();
 
-  //   const handleClickEdit = (film: Film) => {};
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const editedFilm: Film = {
+    id: -1,
+    titleInput: "",
+    subTitleInput: "",
+    annoUscita: "",
+  };
+
+  const [item, setItem] = useState(editedFilm);
+  const [filmToEdit, setFilmToEdit] = useState(editedFilm);
+
+  const handleChange = (e: any) => {
+    console.log(e);
+
+    const nome = e.target.name;
+    const valore = e.target.value;
+    setItem({ ...item, [nome]: valore });
+  };
+
+  const applyChange = (film: Film) => {
+    console.log(item);
+    console.log(film);
+  };
 
   const handleClickDelete = (film: Film) => {
     dispatch(removeFilm(film.titleInput));
@@ -50,9 +84,65 @@ export const Elenco = (props: IArrayProps) => {
                 <Td>{film.subTitleInput}</Td>
                 <Td>{film.annoUscita.substr(0, 4)}</Td>
                 <Td>
-                  <Button colorScheme="orange">
+                  <Button
+                    colorScheme="orange"
+                    // onClick={() => handleClickEdit(film)}
+                    onClick={onOpen}
+                  >
                     <EditIcon />
                   </Button>
+
+                  {/* modale per la modifica del film */}
+                  <Modal isOpen={isOpen} onClose={onClose}>
+                    <ModalOverlay />
+                    <ModalContent>
+                      <ModalHeader>Modifica il record del film</ModalHeader>
+                      <ModalCloseButton />
+                      <ModalBody pb={6}>
+                        <FormControl>
+                          <FormLabel>Titolo</FormLabel>
+                          <Input
+                            placeholder="Titolo"
+                            onChange={handleChange}
+                            value={item.titleInput}
+                            name="titleInput"
+                          />
+                        </FormControl>
+
+                        <FormControl mt={4}>
+                          <FormLabel>Sottotitolo</FormLabel>
+                          <Input
+                            placeholder="Sottotitolo"
+                            onChange={handleChange}
+                            value={item.subTitleInput}
+                            name="subTitleInput"
+                          />
+                        </FormControl>
+
+                        <FormControl mt={4}>
+                          <FormLabel>Anno</FormLabel>
+                          <Input
+                            placeholder="Anno"
+                            value={item.annoUscita}
+                            name="annoUscita"
+                            type="date"
+                            onChange={handleChange}
+                          />
+                        </FormControl>
+                      </ModalBody>
+
+                      <ModalFooter>
+                        <Button
+                          colorScheme="teal"
+                          mr={3}
+                          onClick={() => applyChange(editedFilm)}
+                        >
+                          Save
+                        </Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                      </ModalFooter>
+                    </ModalContent>
+                  </Modal>
                 </Td>
                 <Td>
                   <Button

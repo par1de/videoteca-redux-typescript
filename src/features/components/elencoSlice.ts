@@ -49,6 +49,9 @@ export const elencoSlice = createSlice({
         (x) => x.titleInput !== action.payload
       );
     },
+    editFilm: (state, action) => {
+      
+    },
     scegliFilm: (state, action) => {
       state.filmSelezionato = action.payload;
       state.isSelected = true;
