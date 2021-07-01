@@ -23,7 +23,12 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { removeFilm, removeFilmFromWanted } from "./elencoSlice";
+import {
+  addFilm,
+  addFilmFromWanted,
+  removeFilm,
+  removeFilmFromWanted,
+} from "./elencoSlice";
 import { IArrayProps } from "./Videoteca";
 import { Film } from "./Videoteca";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
@@ -40,20 +45,27 @@ export const Elenco = (props: IArrayProps) => {
     annoUscita: "",
   };
 
-  const [item, setItem] = useState(editedFilm);
+  const [newFilm, setNewFilm] = useState(editedFilm);
   const [filmToEdit, setFilmToEdit] = useState(editedFilm);
 
   const handleChange = (e: any) => {
-    console.log(e);
-
     const nome = e.target.name;
     const valore = e.target.value;
-    setItem({ ...item, [nome]: valore });
+    setNewFilm({ ...newFilm, [nome]: valore });
   };
 
-  const applyChange = (film: Film) => {
-    console.log(item);
-    console.log(film);
+  const applyChange = () => {
+    // console.log(newFilm);
+    // console.log(filmToEdit);
+    dispatch(removeFilm(filmToEdit));
+    dispatch(removeFilmFromWanted(filmToEdit));
+    dispatch(addFilm(newFilm));
+    dispatch(addFilmFromWanted(newFilm));
+  };
+
+  const handleClick = (film: Film) => {
+    onOpen();
+    setFilmToEdit(film);
   };
 
   const handleClickDelete = (film: Film) => {
@@ -86,8 +98,8 @@ export const Elenco = (props: IArrayProps) => {
                 <Td>
                   <Button
                     colorScheme="orange"
-                    // onClick={() => handleClickEdit(film)}
-                    onClick={onOpen}
+                    onClick={() => handleClick(film)}
+                    // onClick={onOpen}
                   >
                     <EditIcon />
                   </Button>
@@ -102,9 +114,9 @@ export const Elenco = (props: IArrayProps) => {
                         <FormControl>
                           <FormLabel>Titolo</FormLabel>
                           <Input
-                            placeholder="Titolo"
+                            placeholder={filmToEdit.titleInput}
                             onChange={handleChange}
-                            value={item.titleInput}
+                            value={newFilm.titleInput}
                             name="titleInput"
                           />
                         </FormControl>
@@ -112,9 +124,9 @@ export const Elenco = (props: IArrayProps) => {
                         <FormControl mt={4}>
                           <FormLabel>Sottotitolo</FormLabel>
                           <Input
-                            placeholder="Sottotitolo"
+                            placeholder={filmToEdit.subTitleInput}
                             onChange={handleChange}
-                            value={item.subTitleInput}
+                            value={newFilm.subTitleInput}
                             name="subTitleInput"
                           />
                         </FormControl>
@@ -122,8 +134,8 @@ export const Elenco = (props: IArrayProps) => {
                         <FormControl mt={4}>
                           <FormLabel>Anno</FormLabel>
                           <Input
-                            placeholder="Anno"
-                            value={item.annoUscita}
+                            placeholder={filmToEdit.annoUscita}
+                            value={newFilm.annoUscita}
                             name="annoUscita"
                             type="date"
                             onChange={handleChange}
@@ -135,11 +147,13 @@ export const Elenco = (props: IArrayProps) => {
                         <Button
                           colorScheme="teal"
                           mr={3}
-                          onClick={() => applyChange(editedFilm)}
+                          onClick={() => applyChange()}
                         >
-                          Save
+                          Applica modifiche
                         </Button>
-                        <Button onClick={onClose}>Cancel</Button>
+                        <Button onClick={onClose} colorScheme="red">
+                          Cancel
+                        </Button>
                       </ModalFooter>
                     </ModalContent>
                   </Modal>
