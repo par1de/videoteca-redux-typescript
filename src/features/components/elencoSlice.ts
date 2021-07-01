@@ -43,7 +43,11 @@ export const elencoSlice = createSlice({
         (x) => x.titleInput !== action.payload
       );
       console.log("sono in remove");
-      
+    },
+    removeFilmFromWanted: (state, action) => {
+      state.wantedFilms = state.wantedFilms.filter(
+        (x) => x.titleInput !== action.payload
+      );
     },
     scegliFilm: (state, action) => {
       state.filmSelezionato = action.payload;
@@ -58,7 +62,7 @@ export const elencoSlice = createSlice({
   },
 });
 
-export const { addFilm, removeFilm, scegliFilm, ricerca } = elencoSlice.actions;
+export const { addFilm, removeFilm, removeFilmFromWanted, scegliFilm, ricerca } = elencoSlice.actions;
 
 export const selectFilm = (state: RootState) => state.film.elencoFilm;
 

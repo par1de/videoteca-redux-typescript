@@ -2,19 +2,17 @@ import React from "react";
 import {
   Button,
   Flex,
-  Spacer,
   Table,
   TableCaption,
   Tbody,
   Td,
-  Text,
   Tfoot,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { removeFilm, scegliFilm } from "./elencoSlice";
+import { removeFilm, removeFilmFromWanted, scegliFilm } from "./elencoSlice";
 import { IArrayProps } from "./Videoteca";
 import { Film } from "./Videoteca";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
@@ -22,10 +20,11 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 export const Elenco = (props: IArrayProps) => {
   const dispatch = useDispatch();
 
-  const handleClickEdit = (film: Film) => {};
+  //   const handleClickEdit = (film: Film) => {};
 
   const handleClickDelete = (film: Film) => {
     dispatch(removeFilm(film.titleInput));
+    dispatch(removeFilmFromWanted(film.titleInput));
   };
 
   return (
@@ -56,7 +55,10 @@ export const Elenco = (props: IArrayProps) => {
                   </Button>
                 </Td>
                 <Td>
-                  <Button colorScheme="red" onClick={() => handleClickDelete}>
+                  <Button
+                    colorScheme="red"
+                    onClick={() => handleClickDelete(film)}
+                  >
                     <DeleteIcon />
                   </Button>
                 </Td>

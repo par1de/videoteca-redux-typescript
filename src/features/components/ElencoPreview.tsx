@@ -3,6 +3,8 @@ import { removeFilm, scegliFilm } from "./elencoSlice";
 import { Flex, Button, Text } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { IArrayProps, Film } from "./Videoteca";
+import { DeleteIcon, ViewIcon } from "@chakra-ui/icons";
+import { VscOpenPreview } from "react-icons/vsc";
 // import { TooltipFilm } from "./TooltipFilm";
 
 export const ElencoPreview = (props: IArrayProps) => {
@@ -18,7 +20,6 @@ export const ElencoPreview = (props: IArrayProps) => {
         return (
           <Flex key={index}>
             <Text m="1">{film.titleInput}</Text>
-
             {/* <Text>{film.subTitleInput}</Text>
             <Spacer />
             <Text>{film.annoUscita}</Text> */}
@@ -27,18 +28,16 @@ export const ElencoPreview = (props: IArrayProps) => {
               colorScheme="red"
               onClick={() => dispatch(removeFilm(film.titleInput))}
             >
-              elimina
+              <DeleteIcon />
             </Button>
-
-            {/* <TooltipFilm film={film} /> */}
-
             <Button
               m="2"
               colorScheme="green"
               onClick={() => dispatch(scegliFilm(film))}
             >
-              {/* <Button m="2" onClick={() => handleClick(film)}> */}
-              Dettaglio film
+              <Flex>
+                <VscOpenPreview size="1.2em" />
+              </Flex>
             </Button>
           </Flex>
         );
