@@ -10,10 +10,10 @@ function Layout() {
         <Menu />
         <Switch>
           <Route exact path="/" component={Videoteca}>
-            <Videoteca />
+            {/* <Videoteca /> */}
           </Route>
           <Route exact path="/ricerca" component={Ricerca}>
-            <Ricerca />
+            {/* <Ricerca /> */}
           </Route>
         </Switch>
       </Router>

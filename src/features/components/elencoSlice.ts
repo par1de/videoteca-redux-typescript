@@ -1,7 +1,7 @@
 import { Film } from './Videoteca';
 import { RootState } from './../../app/store';
 import { createSlice } from "@reduxjs/toolkit";
-import { bastardi, django, hateful, iene, killBill1, killBill2, pulpFiction } from './elencoFilmMockup';
+import { bastardi, django, hateful, iene, killBill1, killBill2, pulpFiction, jackie, hollywood } from './elencoFilmMockup';
 
 export interface VideotecaState {
   elencoFilm: Array<Film>;
@@ -14,7 +14,7 @@ export interface VideotecaState {
 
 
 const initialState: VideotecaState = {
-  elencoFilm: [iene, pulpFiction, killBill1, killBill2, bastardi, django, hateful],
+  elencoFilm: [iene, pulpFiction, jackie, killBill1, killBill2, bastardi, django, hateful, hollywood],
   wantedFilms: [],
   filmSelezionato: {
     id: 0,

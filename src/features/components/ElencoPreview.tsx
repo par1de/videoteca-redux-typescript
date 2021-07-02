@@ -1,10 +1,11 @@
 import React from "react";
 import { removeFilm, scegliFilm } from "./elencoSlice";
-import { Flex, Button, Text, SimpleGrid, Spacer } from "@chakra-ui/react";
+import { Flex, Button, Text, SimpleGrid } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { IArrayProps, Film } from "./Videoteca";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { VscOpenPreview } from "react-icons/vsc";
+import { getRandoms } from "../utils/utility";
 // import { TooltipFilm } from "./TooltipFilm";
 
 export const ElencoPreview = (props: IArrayProps) => {
@@ -14,12 +15,16 @@ export const ElencoPreview = (props: IArrayProps) => {
   //   dispatch(scegliFilm(film));
   // };
 
+  // TODO - proseguire sviluppo da qui
+  // const randomMovie: IArrayProps = getRandoms(props.movies, 3);
+  console.log(getRandoms(props.movies, 3));
+
   return (
     <Flex direction="column">
-      <SimpleGrid columns={2}>
-        {props.movies.map((film: Film, index: number) => {
-          return (
-            <>
+      {props.movies.map((film: Film, index: number) => {
+        return (
+          <React.Fragment key={index}>
+            <SimpleGrid columns={2}>
               <Text align="left" m="1">
                 {film.titleInput}
               </Text>
@@ -43,10 +48,10 @@ export const ElencoPreview = (props: IArrayProps) => {
                   </Flex>
                 </Button>
               </Flex>
-            </>
-          );
-        })}
-      </SimpleGrid>
+            </SimpleGrid>
+          </React.Fragment>
+        );
+      })}
     </Flex>
   );
 };
