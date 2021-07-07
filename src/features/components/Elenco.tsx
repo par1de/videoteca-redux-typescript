@@ -21,6 +21,13 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Image,
+  Img,
+  Stack,
+  Box,
+  Wrap,
+  WrapItem,
+  Avatar,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import {
@@ -80,6 +87,7 @@ export const Elenco = (props: IArrayProps) => {
         <Thead>
           <Tr>
             <Th>Id</Th>
+            <Th>Locandina</Th>
             <Th>Titolo</Th>
             <Th>Sottotitolo</Th>
             <Th>Anno Uscita</Th>
@@ -92,6 +100,23 @@ export const Elenco = (props: IArrayProps) => {
             return (
               <Tr key={index}>
                 <Td>{film.id}</Td>
+                <Td>
+                  {/* <Image
+                    borderRadius="full"
+                    boxSize="50px"
+                    src="../../assets/Le_iene.jpg"
+                    alt="Le Iene"
+                  /> */}
+                  <Wrap>
+                    <WrapItem>
+                      <Avatar
+                        name="Dan Abrahmov"
+                        src="../../assets/Le_Iene.jpg"
+                        url="../../assets/Le_Iene.jpg"
+                      />
+                    </WrapItem>
+                  </Wrap>
+                </Td>
                 <Td>{film.titleInput}</Td>
                 <Td>{film.subTitleInput}</Td>
                 <Td>{film.annoUscita.substr(0, 4)}</Td>
