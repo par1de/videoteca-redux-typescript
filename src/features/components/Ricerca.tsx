@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Flex, Button } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { wantedFilms, ricerca, selectFilm } from "./elencoSlice";
+import { wantedFilms, ricerca } from "./elencoSlice";
 import { useState } from "react";
 import { Header } from "./Header";
 import { Elenco } from "./Elenco";
@@ -9,17 +9,14 @@ import { Elenco } from "./Elenco";
 function Ricerca() {
   const dispatch = useDispatch();
   const films = useSelector(wantedFilms);
-  const film = useSelector(selectFilm);
   const [titleToResearch, setTitleToResearch] = useState("");
 
   const handleChange = (e: any) => {
     setTitleToResearch(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleClick = () => {
     dispatch(ricerca(titleToResearch));
-    console.log(titleToResearch);
   };
 
   return (
@@ -37,8 +34,6 @@ function Ricerca() {
         </Button>
       </Flex>
       <Elenco movies={films} />
-      {console.log(film)}
-      {console.log(films)}
     </>
   );
 }
